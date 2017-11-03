@@ -60,8 +60,9 @@ function absurdBubbleSort(arr, sortCompletionCallback) {
 
 // askIfGreaterThan(2, 3, callback => console.log("we got here"));
 
+innerBubbleSortLoop([2,3,1,5], 0, false, outerBubbleSortLoop => console.log("In outer bubble sort"));
 
-absurdBubbleSort([3, 2, 1], function (arr) {
-  console.log("Sorted array: " + JSON.stringify(arr));
-  reader.close();
-});
+// absurdBubbleSort([3, 2, 1], function (arr) {
+//   console.log("Sorted array: " + JSON.stringify(arr));
+//   reader.close();
+// });
