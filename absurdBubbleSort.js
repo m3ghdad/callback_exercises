@@ -39,8 +39,13 @@ function innerBubbleSortLoop(arr, i, madeAnySwaps, outerBubbleSortLoop) {
   }
     askIfGreaterThan(arr[i], arr[i + 1], function(isGreaterThan){
       if (isGreaterThan) {
-        arr[i],arr[i + 1] = arr[i + 1],arr[i];
-        madeAnySwaps = true;
+        // arr[i],arr[i + 1] = arr[i + 1],arr[i];
+        // madeAnySwaps = true;
+        const tmp = arr[i];
+        arr[i] = arr[i + 1];
+        arr[i + 1] = tmp;
+
+        madeAnySwaps = true
       }
       innerBubbleSortLoop(arr, i + 1, madeAnySwaps, outerBubbleSortLoop);
     });
@@ -53,16 +58,22 @@ function absurdBubbleSort(arr, sortCompletionCallback) {
   function outerBubbleSortLoop(madeAnySwaps) {
     // Begin an inner loop if you made any swaps. Otherwise, call
     // `sortCompletionCallback`.
+    if (madeAnySwaps) {
+      innerBubbleSortLoop(arr, 0, false, outerBubbleSortLoop);
+    }
+    else {
+      sortCompletionCallback(arr);
+    }
   }
-
+  outerBubbleSortLoop(true);
   // Kick the first outer loop off, starting `madeAnySwaps` as true.
 }
 
 // askIfGreaterThan(2, 3, callback => console.log("we got here"));
 
-innerBubbleSortLoop([2,3,1,5], 0, false, outerBubbleSortLoop => console.log("In outer bubble sort"));
+// innerBubbleSortLoop([2,3,1,5], 0, false, outerBubbleSortLoop => console.log("In outer bubble sort"));
 
-// absurdBubbleSort([3, 2, 1], function (arr) {
-//   console.log("Sorted array: " + JSON.stringify(arr));
-//   reader.close();
-// });
+absurdBubbleSort([3, 2, 1], function (arr) {
+  console.log("Sorted array: " + JSON.stringify(arr));
+  reader.close();
+});
