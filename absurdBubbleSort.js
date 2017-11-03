@@ -45,7 +45,7 @@ function innerBubbleSortLoop(arr, i, madeAnySwaps, outerBubbleSortLoop) {
         arr[i] = arr[i + 1];
         arr[i + 1] = tmp;
 
-        madeAnySwaps = true
+        madeAnySwaps = true;
       }
       innerBubbleSortLoop(arr, i + 1, madeAnySwaps, outerBubbleSortLoop);
     });
